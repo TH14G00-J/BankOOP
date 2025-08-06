@@ -1,15 +1,48 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import entities.Account;
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner sc = new Scanner(System.in);
+        Account account;
+        double value;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        System.out.print("Enter account number: ");
+        int number = sc.nextInt();
+
+        sc.nextLine();
+
+        System.out.print("Enter account holder: ");
+        String holder = sc.nextLine();
+
+        char answer;
+        System.out.print("Is there an initial deposit (y/n)? ");
+        answer = sc.next().toUpperCase().trim().charAt(0);
+
+        if (answer == 'Y') {
+            System.out.print("Enter the deposit value: ");
+            value = sc.nextDouble();
+            account  = new Account(holder, number, value);
+        }else {
+            account  = new Account(holder, number);
         }
+
+        System.out.println("Account data: ");
+        System.out.println(account);
+
+        System.out.print("Enter a deposit value: ");
+        value = sc.nextDouble();
+        account.deposit(value);
+
+        System.out.println("Updated account data: ");
+        System.out.println(account);
+
+        System.out.print("Enter a withdraw value: ");
+        value = sc.nextDouble();
+        account.withdraw(value);
+
+        System.out.println("Updated account data: ");
+        System.out.println(account);
     }
 }
